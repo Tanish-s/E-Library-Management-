@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+*:focus {
+  outline: none;
+}
+
+body {
+  background-color: black;
+}
+
+nav {
+  width: 1149px;
+  position: absolute;
+  height: 85px;
+  background: black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 100px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  top: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+nav .logo {
+  font-size: 40px;
+  margin-right: 38%;
+  font-weight: 700;
+  color: white;
+}
+#firebaseui-auth-container {
+  margin-top: 20%;
+}
+.Backbutton {
+  color: white;
+
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 520;
+  width: 90px;
+  height: 44px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  transition: 0.1s ease;
+  cursor: pointer;
+  margin-left: 10px;
+}

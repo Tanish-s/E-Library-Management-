@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+  <head>
+    <link rel="icon" type="image.png" href="favIcon.png">
+    <title>E-Library</title>
+  </head>
+  <body>
+    <nav>
+      <div class="menu-icon">
+        </div>
+        <div class="logo">E - Library</div>    
+    </nav>
+
+    <div id="id01" class="modal">
+        <link rel="stylesheet" href="../css/book4.css" />
+          <div id="book-box">
+            <a href="homepage.html">
+              <img class="arrow" src="arrow.png" style="width: 25px; margin-left: 3%; margin-top: 2.5%;">
+            </a>
+              <div class="book-style">
+                <h1>Operating System Concepts</h1>
+                <h2>Abraham Sliberschtaz, Peter Baer Galvin, Gerg Gagne </h2>
+                <img src="book4.jpg">
+                <p>
+                    The main software when using the computer is the operating system. 
+                    The operating system defines all the experiences when using a computer; 
+                    it manages the hardware and software resources of the computer system,
+                    provides a way for applications to deal with the hardware without having 
+                    to know all the details of the hardware, and it is the software that makes 
+                    all the programs work. It organizes and controls the hardware on computers. 
+                    The operating system is the first software we see when we turn on the computer, 
+                    and the last software we see when the computer is turned off. <br>
+                    <br>
+                    <b> Book price: Rs 2000 </b>
+                </p>
+                <h2 class="book_id">Book ID: OS212</h2>
+              </div>
+            <div class="input-data">
+              <input id="insert_borrow" type="submit" name="borrow" value="Borrow" />
+              <!--input id="insert_buy" type="submit" name="buy" value="Buy" /-->
+            </div>
+          </div>
+     </div>
+     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script id="mainScript">
+       var firebaseConfig = {
+      apiKey: "AIzaSyDHJ_-ZQYPFVq7-NtsJXXMFKnga9dxGpVM",
+      authDomain: "library-20343.firebaseapp.com",
+      databaseURL: "https://library-20343-default-rtdb.firebaseio.com",
+      projectId: "library-20343",
+      storageBucket: "library-20343.appspot.com",
+      messagingSenderId: "212815264632",
+      appId: "1:212815264632:web:a934e86c5eb179e911e68d",
+      measurementId: "G-9EELX46W32"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    var bookID, bookTITLE, authorNAME, bookPRICE, userEMAIL;
+      
+      function ready() {
+        bookID = "OS212";
+        bookTITLE = "Operating System Concepts";
+        authorNAME = "Abraham Sliberschtaz, Peter Baer Galvin, Gerg Gagne";
+        bookPRICE = 2000;
+      }
+
+      document.getElementById('insert_borrow').onclick = function () {
+        ready();
+       
+        userEMAIL = prompt("Confirm your email. (exclude '.com')", "e.g. xyz@gmail");
+        for(var i = 0; i < userEMAIL.length; i++)
+        {
+          if(userEMAIL.charAt(i) == '.' && userEMAIL.charAt(i + 1) == 'c' && userEMAIL.charAt(i + 2) == 'o' && userEMAIL.charAt(i + 3) == 'm')
+          {
+            userEMAIL = prompt("Confirm your email. (exclude '.com')", "e.g. xyz@gmail");
+          }
+        }
+        firebase.database().ref('BorrowedBooks/'+userEMAIL+' '+bookID).set({
+          bookId: bookID,
+          bookTitle: bookTITLE,
+          AuthorName: authorNAME,
+          userEmail: userEMAIL
+        });
+        swal({
+          title: "Borrowed!", 
+          text: "You borrowed the book.", 
+          icon: "success"
+        });
+      }
+
+
+    </script>
+  </body>
+</html>
